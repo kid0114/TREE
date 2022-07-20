@@ -4,15 +4,23 @@
 
 #ifndef TREE_RBTREE_H
 #define TREE_RBTREE_H
+#include "treenode.h"
 
-
-class RBtree {
+class RBtree : treenode {
 private:
     int color;
 public:
-    bool getcolor();
-    void changecolor();
+    RBtree(int color) {
+        color = 0;//0 black 1 red
+    }
 
+    int getcolor() {
+        return color;
+    }
+
+    void changecolor(int v) {
+        color = v;
+    }
 };
 
 

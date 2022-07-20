@@ -4,27 +4,47 @@
 
 #ifndef TREE_AVLTREE_H
 #define TREE_AVLTREE_H
+
 #include "treenode.h"
 #include "BST.h"
-class AVLtree: treenode{
+
+node *AVLtreeInsert(node *root, int v);
+
+node *AVLBalance(node *root);
+
+//treenode* AVLBalanceAll(treenode* root);
+node *AVLtreeCreate(int a[], int n);
+
+node *AVLtreeDelete(node *root, int x);
+
+class AVLtree {
+
+
 public:
-    void AVLfree(){
-        freeTree(this);
+    treenode *AVLroot;
+
+    void AVLfree() {
+        freeTree(AVLroot->root);
+    }
+
+    AVLtree(int a[], int n) {
+        AVLroot = new treenode();
+        AVLroot->root = AVLtreeCreate(a, n);
+    }
+
+    void insert(int x) {
+        AVLroot->root = AVLtreeInsert(AVLroot->root, x);
+    }
+
+    //balance
+    treenode *getAVLroot() {
+        return AVLroot;
     }
 
 };
-treenode* AVLtreeInsert(treenode* root, int v);
-treenode* AVLtreeCreate(int a[], int n);
 
+int getdepth(node *root);
 
-//balance
-treenode* AVLBalance(treenode* root);
-treenode* AVL_LL(treenode* root);
-treenode* AVL_RR(treenode* root);
+int getbalance(node *root);
 
-treenode* AVL_LR(treenode* root);
-treenode* AVL_RL(treenode* root);
-
-int getdepth(treenode* root);
-int getbalance(treenode* root);
 #endif //TREE_AVLTREE_H

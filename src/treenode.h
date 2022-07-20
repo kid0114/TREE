@@ -5,40 +5,58 @@
 #ifndef TREE_TREENODE_H
 #define TREE_TREENODE_H
 
+#include "iostream"
+#include "node.h"
 
-class treenode{
+using namespace std;
+
+class treenode {
+protected:
+    void check_front(node *head);
+
+    void check_mid(node *head);
+
+    void check_back(node *head);
+
+    void check_level(node *head);
+
 public:
-    int val;
-    treenode *l;
-    treenode *r;
-    treenode(int x){
-        val=x;
-        l= nullptr;
-        r= nullptr;
-    }
-    treenode(){
-        val=0;
-        l= nullptr;
-        r= nullptr;
+    node *root;
+
+    treenode() {
+        root = nullptr;
     }
 
-
+    //check ways
+    void check_tree() {
+        cout << "level: ";
+        check_level(root);
+        cout << "front: ";
+        check_front(root);
+        cout << "\n";
+        cout << "middle: ";
+        check_mid(root);
+        cout << "\n";
+        cout << "back: ";
+        check_back(root);
+        cout << "\n";
+    }
 };
-treenode *createTree_level(int a[], int size, int &t);
-void freeTree(treenode* head);
 
-//check ways
-void check_front(treenode* head);
-void check_mid(treenode *head);
-void check_back(treenode *head);
-void check_level(treenode *head);
+node *createTree_level(int a[], int size, int &t);
+
+void freeTree(node *head);
+
 
 //find node
-treenode* find_x_d(treenode* head,int x);
-treenode* find_x_b(treenode* head,int x);
+treenode *find_x_d(treenode *head, int x);
+
+treenode *find_x_b(treenode *head, int x);
+
 //treenode* find_father(treenode* head,int x);
-int find_depth(treenode* head,int &x);
+int find_depth(treenode *head, int &x);
+
 //swap val
-void treenode_swap(treenode* a,treenode *b);
+void node_swap(node *a, node *b);
 
 #endif //TREE_TREENODE_H

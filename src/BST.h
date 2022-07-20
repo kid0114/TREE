@@ -6,20 +6,39 @@
 #define TREE_BST_H
 
 #include "treenode.h"
+#include "node.h"
 
-class BST:treenode{
+class BST {
 public:
-    treenode* BSTinsert(treenode* root, int x);
-    treenode* BSTcreate(int a[],int n);
-    void BSTfree(){
-        freeTree(this);
+    treenode *BSTroot;
+
+    //node* BSTinsert(node* root, int x);
+    BST(int a[], int n) {
+        BSTroot = new treenode();
+        BSTroot->root = nullptr;
+        BSTcreate(a, n);
     }
-    treenode* BSTdelete_x(treenode* head,int x);
+
+    void BSTcreate(int a[], int n);
+
+    void BSTfree() {
+        freeTree(BSTroot->root);
+    }
+
 };
-treenode* BSTfind(treenode* root,int x);
-treenode* BSTfind_father(treenode* head,int x);
-treenode* father(treenode* head,int x);
-treenode* BSTfindmax(treenode *head);
-treenode* BSTdeletemax(treenode *head);
-treenode* BSTfindmin(treenode *head);
+
+node *BSTfind(node *root, int x);
+
+node *BSTfind_father(node *head, int x);
+
+node *father(node *head, int x);
+
+node *BSTdelete(node *head, int x);
+
+node *BSTfindmax(node *head);
+
+node *BSTdeletemax(node *head);
+
+node *BSTfindmin(node *head);
+
 #endif //TREE_BST_H
